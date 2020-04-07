@@ -93,6 +93,12 @@ Image selection was a manual process and consisted of searching for images, modi
 --
 #### Training a Network
 
+
+
+Training models output their saved weights to the `data` folder.  
+Training images are located in the `images/training` folder.  
+
+
 This section consists of different methods to accomplish the same classification goal.  All of our models are trying to classify what is a building and what is background.
 All of the images for this section are located in the `images/training/` folder, along with a script to create the positive and negative images from the originals and binary mask.
 - Upon further review, this seems to be a useless step and is not the proper way to accomplish this task.
