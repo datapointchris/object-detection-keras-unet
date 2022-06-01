@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "object_detection_keras_unet"
+version = "0.1.0"
+description = "Detecting houses in images using Keras and UNET architecture"
+authors = ["Chris Birch <datapointchris@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.11"
+jupyter = "^1.0.0"
+tensorflow = "^2.9.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
