@@ -1,0 +1,8 @@
+- [ ] Move configuration into config file
+  - [ ] Pydantic for validation
+- [ ] Train on AWS
+  - [ ] Save model
+  - [ ] If it is good, add it to apps
+- [ ] Clean up Notebook
+  - [ ] Create script to run as well
+- [ ] Improve README
