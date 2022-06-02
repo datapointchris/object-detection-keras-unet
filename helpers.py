@@ -1,17 +1,14 @@
 import numpy as np
 import cv2
+import matplotlib.pyplot as plt
+from itertools import islice
 
 
-def image_splitter(
-    image, num_col_splits, num_row_splits, resize=False, resize_width=None, resize_height=None
-):
+def image_splitter(image, num_col_splits, num_row_splits):
     """
     Splits an image into 'num_col_splits' X 'num_row_splits'
-    Resize by setting resize=True and specifying 'resize_width' and 'resize_height'
     Returns array of images arranged from left -> right, top -> bottom
     """
-    if resize:
-        image = cv2.resize(image, (resize_width, resize_height))
 
     width = image.shape[0]
     height = image.shape[1]
@@ -27,31 +24,38 @@ def image_splitter(
     return np.array(imglist)
 
 
-def load_image_as_array(image_name, image_dir, gray=False, resize=False):
-    """
-    Loads and splits an image
-    Returns numpy array
-    """
-    if gray is False:
-        image = cv2.imread(image_dir + image_name).astype(np.uint8)
-    else:
-        image = cv2.imread(image_dir + image_name, 0).astype(np.uint8)
-
-    image_as_array = image_splitter(
-        image,
-        num_col_splits=split_cols,
-        num_row_splits=split_rows,
-        resize=resize,
-        resize_height=image_resize_height,
-        resize_width=image_resize_width,
-    )
-    return image_as_array
-
-
-def array_shape_and_mem_usage(array):
-    """Prints the shape and memory size of an array"""
+def print_array_properties(name, array):
+    print('==========')
+    print(name.upper())
+    print(f'Length: {len(array)}')
     print(f'Shape: {array.shape}')
     print(f'Size: {round(array.itemsize * array.size / 1024 / 1024 / 1024, 3)} GB')
+    print('==========')
+    print('')
+
+
+def create_batches(iterable, batch_size):
+    iterator = iter(iterable)
+    while batch := list(islice(iterator, batch_size)):
+        yield batch
+
+
+def batch_stacker(batches, gray=False, resize: tuple[int] | None = None):
+    for batch in batches:
+        if gray:
+            arr = [
+                np.array(cv2.imread(image, cv2.IMREAD_GRAYSCALE), dtype=np.uint8)
+                for image in batch
+            ]
+            if resize:
+                arr = [cv2.resize(a, (resize[0], resize[1])) for a in arr]
+            arr = np.expand_dims(arr, axis=3)
+        else:
+            arr = [np.array(cv2.imread(image), dtype=np.uint8) for image in batch]
+            if resize:
+                arr = [cv2.resize(a, (resize[0], resize[1])) for a in arr]
+        stack = (np.stack(arr) / 255).astype(np.float32)
+        yield stack
 
 
 def image_tester(original):
