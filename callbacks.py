@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def plot_predictions(original, predicted, predicted_mask, ground_truth=None, repeat=False):
+def plot_predictions(original, predicted, predicted_mask, ground_truth=None, repeat=False, num_validation_sets=1):
     """
     Plots the original image, predicted image, mask from the predicted image, and ground truth mask.
     ground_truth: None for testing images without masks
@@ -13,7 +13,7 @@ def plot_predictions(original, predicted, predicted_mask, ground_truth=None, rep
     if ground_truth is not None:
         ncols_calc = 4
 
-    for i in range(4):
+    for i in range(num_validation_sets):
         if repeat:
             ix = i
         else:
