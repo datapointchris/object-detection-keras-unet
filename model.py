@@ -1,10 +1,4 @@
-from keras.layers import Dense, Dropout, Flatten, Activation, Input, BatchNormalization, Lambda
-from keras.layers import (
-    Conv2D,
-    MaxPooling2D,
-    concatenate,
-    Conv2DTranspose,
-)
+from keras.layers import Dropout, Conv2D, MaxPooling2D, concatenate, Conv2DTranspose
 from keras.models import Model
 
 
@@ -12,9 +6,14 @@ def make_model(inputs, model_name=None, print_summary=False):
     '''
     Creates a new U-Net model
     '''
-    s = Lambda(lambda x: x)(inputs)  # removed / 255
-
-    c1 = Conv2D(16, (3, 3), activation='elu', kernel_initializer='he_normal', padding='same')(s)
+    c1 = Conv2D(
+        16,
+        (3, 3),
+        input_shape=inputs.shape[1:],
+        activation='elu',
+        kernel_initializer='he_normal',
+        padding='same',
+    )(inputs)
     c1 = Dropout(0.1)(c1)
     c1 = Conv2D(16, (3, 3), activation='elu', kernel_initializer='he_normal', padding='same')(c1)
     p1 = MaxPooling2D((2, 2))(c1)
@@ -67,7 +66,7 @@ def make_model(inputs, model_name=None, print_summary=False):
     model = Model(name=model_name, inputs=[inputs], outputs=[outputs])
     model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 
-    if print_summary is not None:
+    if print_summary:
         print(model.summary())
 
     return model
