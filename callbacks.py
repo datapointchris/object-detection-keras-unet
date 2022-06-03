@@ -43,15 +43,15 @@ def plot_predictions(original, predicted, predicted_mask, ground_truth=None, rep
 
 
 class ValPlotCallback(Callback):
-    def __init__(self, model, model_batch_size, x_val, y_val):
+    def __init__(self, model, batch_size, x_val, y_val):
         self.model = model
-        self.model_batch_size = model_batch_size
+        self.batch_size = batch_size
         self.x_val = x_val
         self.y_val = y_val
 
     def on_train_end(self, logs=None):
         print('VALIDATION IMAGES')
-        x_val_pred = self.model.predict(self.x_val, verbose=1, batch_size=self.model_batch_size)
+        x_val_pred = self.model.predict(self.x_val, verbose=1, batch_size=self.batch_size)
         x_val_pred_mask = (x_val_pred > 0.5).astype(np.uint8)
         plot_predictions(
             original=self.x_val,
