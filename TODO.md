@@ -1,8 +1,10 @@
-- [ ] Move configuration into config file
+- [X] Move configuration into config file
+  - [ ] Config for dev / prod which means local vs s3 paths
 - [ ] Train on AWS
   - [ ] Save model
+    - [ ] S3
   - [ ] If it is good, add it to apps
 - [ ] Clean up Notebook
   - [ ] Create script to run as well
 - [ ] Improve README
-- [ ] UNETModel(Model) class
+- [ ] Finish testing script (once training has ok results)
