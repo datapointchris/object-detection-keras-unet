@@ -10,6 +10,7 @@ class BaseConfig:
 @dataclass
 class MainConfig(BaseConfig):
     SEED: int = 77
+    loop_epochs: int = 5
     train_image_path: Path = Path('images/training/build/0/')
     train_mask_path: Path = Path('images/training/mask/0/')
     test_image_path: Path = Path('images/training/test/0/')
