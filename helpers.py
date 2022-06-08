@@ -79,7 +79,7 @@ def split_image(image, col_splits, row_splits):
         for hstart in np.linspace(0, height, row_splits, endpoint=False):
             hend = hstart + (height / row_splits)
 
-            imglist.append(image[int(hstart) : int(hend), int(vstart) : int(vend)])
+            imglist.append(image[int(hstart): int(hend), int(vstart): int(vend)])
     return np.array(imglist)
 
 

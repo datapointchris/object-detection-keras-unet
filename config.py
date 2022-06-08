@@ -48,8 +48,6 @@ class ModelParams(BaseConfig):
     verbose: int = 1
 
 
-
-
 @dataclass
 class TensorBoardParams(BaseConfig):
     log_dir: Path = Path('logs/tensorboard/')

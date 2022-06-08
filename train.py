@@ -6,7 +6,6 @@ from sklearn.model_selection import train_test_split
 import config
 from callbacks import ValPlotCallback
 from helpers import (
-    augment_image,
     generate_augmentations,
     generate_training_batches,
     print_array_properties,
