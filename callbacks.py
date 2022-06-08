@@ -1,17 +1,18 @@
 from keras.callbacks import Callback
 import numpy as np
 import matplotlib.pyplot as plt
+import cv2
 
 
-def plot_predictions(original, predicted, predicted_mask, ground_truth=None, repeat=False, num_validation_sets=1):
+def plot_predictions(
+    original, predicted, predicted_mask, ground_truth=None, repeat=False, num_validation_sets=1
+):
     """
     Plots the original image, predicted image, mask from the predicted image, and ground truth mask.
     ground_truth: None for testing images without masks
     repeat: use the same first 4 images in the dataset for comparison
     """
-    ncols_calc = 3
-    if ground_truth is not None:
-        ncols_calc = 4
+    ncols_calc = 3 if ground_truth is None else 4
 
     for i in range(num_validation_sets):
         if repeat:
@@ -26,16 +27,16 @@ def plot_predictions(original, predicted, predicted_mask, ground_truth=None, rep
         ax[0].axis('off')
 
         ax[1].set_title('Predicted')
-        ax[1].imshow(np.squeeze(predicted[ix]))
+        ax[1].imshow(cv2.cvtColor(np.squeeze(predicted[ix]), cv2.COLOR_BGR2RGB))
         ax[1].axis('off')
 
         ax[2].set_title('Predicted Mask')
-        ax[2].imshow(np.squeeze(predicted_mask[ix]))
+        ax[2].imshow(cv2.cvtColor(np.squeeze(predicted_mask[ix]), cv2.COLOR_BGR2RGB))
         ax[2].axis('off')
 
         if ground_truth is not None:
             ax[3].set_title('Ground Truth')
-            ax[3].imshow(np.squeeze(ground_truth[ix]))
+            ax[3].imshow(cv2.cvtColor(np.squeeze(ground_truth[ix]), cv2.COLOR_BGR2RGB))
             ax[3].axis('off')
 
         plt.subplots_adjust(wspace=0.3, hspace=0.3)
