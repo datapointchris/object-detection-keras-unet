@@ -10,9 +10,9 @@ def plot_predictions(
     """
     Plots the original image, predicted image, mask from the predicted image, and ground truth mask.
     ground_truth: None for testing images without masks
-    repeat: use the same first 4 images in the dataset for comparison
+    repeat: use the same images in the dataset for comparison
     """
-    ncols_calc = 3 if ground_truth is None else 4
+    ncols = 3 if ground_truth is None else 4
 
     for i in range(num_validation_sets):
         if repeat:
@@ -20,7 +20,7 @@ def plot_predictions(
         else:
             ix = np.random.randint(0, predicted.shape[0])
 
-        fig, ax = plt.subplots(ncols=ncols_calc, figsize=(ncols_calc * 5, 24))
+        fig, ax = plt.subplots(ncols=ncols, figsize=(ncols * 5, 24))
 
         ax[0].set_title('Original')
         ax[0].imshow(original[ix])

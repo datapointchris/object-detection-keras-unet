@@ -55,6 +55,7 @@ def augment_image(image, transforms, gray=False):
     if gray:
         transforms = {k: transforms[k] for k in transforms if k not in gray_keys}
     if transforms:
+        # TODO: Try deleting the new and just return image once
         new = image
         for name in transforms:
             transform = transforms.get(name)
@@ -101,7 +102,7 @@ def generate_training_batches(
     augment: bool = None,
     gray: bool = False,
     seed: int = 77,
-    sync: list | None = None,
+    sync: dict | None = None,
 ):
     batches = create_batches(load_dataset_path(path, limit=None), batch_size=batch_size)
     for batch in batches:
