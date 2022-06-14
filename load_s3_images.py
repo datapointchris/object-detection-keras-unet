@@ -1,6 +1,8 @@
 import boto3
 import config
 from pathlib import Path
+from tqdm import tqdm
+
 
 if config.main.ENVIRONMENT == 'production':
     s3 = boto3.resource('s3')
@@ -12,7 +14,7 @@ bucket = s3.Bucket(config.main.s3_bucket)
 
 
 def download_s3_objects(bucket: s3.Bucket, object_path: Path):
-    for object in bucket.objects.filter(Prefix=str(object_path)).all():
+    for object in tqdm(bucket.objects.filter(Prefix=str(object_path)).all()):
         bucket.download_file(object.key, object.key)
 
 

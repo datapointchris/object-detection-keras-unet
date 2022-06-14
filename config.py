@@ -9,7 +9,7 @@ class BaseConfig:
 
 @dataclass
 class MainConfig(BaseConfig):
-    ENVIRONMENT: str = 'production'
+    ENVIRONMENT: str = 'development'
     SEED: int = 77
     loop_epochs: int = 5
     s3_bucket: str = 'object-detection-north-virginia'
