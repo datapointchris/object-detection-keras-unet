@@ -9,6 +9,8 @@ libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-d
 # Upgrade other system packages
 sudo apt upgrade -y
 
+### HAVE TO REBOOT HERE
+
 # Install pyenv
 curl https://pyenv.run | bash
 
