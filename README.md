@@ -34,11 +34,15 @@
 1. Select the AMI
    1. DL
 2. Add S3 security policy to DL instance
-3. Connect to instance
-4. Git pull code
-5. `Make sure .env is present and using `prod` settings
-6. Set configuration settings in `config.py`
-7. Run `train.py` script or `train.ipynb` notebook
+3. Install pyenv
+   1. s
+4. Install poetry
+   1. curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+5. Connect to instance
+6. Git pull code
+7. `Make sure .env is present and using `prod` settings
+8. Set configuration settings in `config.py`
+9.  Run `train.py` script or `train.ipynb` notebook
    1. `train.py` will train and save the model to S3
    2. `train.ipynb` additionally includes the training validation images for monitoring
 
