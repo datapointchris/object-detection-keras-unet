@@ -53,3 +53,6 @@
 - There should be some way to do a 'gridsearch' of the hyperparameters such as batch size, epochs, resize, etc to find the best training model.
   - This is in lieu of making good judgement based on domain knowledge of CNN, UNET, and computer vision in general...
 - LOGGING
+- Tensorboard / MLFlow for tracking experiments
+**Look at this**
+https://github.com/allegroai/clearml
