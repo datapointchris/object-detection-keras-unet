@@ -6,7 +6,7 @@ authors = ["Chris Birch <datapointchris@gmail.com>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.11"
+python = "3.12"
 jupyter = "^1.0.0"
 tqdm = "^4.64.0"
 opencv-python = "^4.5.5"
