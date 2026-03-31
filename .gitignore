@@ -68,3 +68,4 @@ images/
 **/__pycache__
 .env
 logs/.planning/
+.planning
