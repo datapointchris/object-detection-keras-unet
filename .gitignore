@@ -67,4 +67,4 @@ Temporary Items
 images/
 **/__pycache__
 .env
-logs/
+logs/.planning/
